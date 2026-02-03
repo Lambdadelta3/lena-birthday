@@ -198,8 +198,8 @@
     <div id="dungeon-bg"></div>
 
     <div class="container">
-        <h1>Dungeon Clear!</h1>
-        <p class="subtitle">Four rare items have been discovered. You may choose only one to keep.</p>
+        <h1>Congratulations!</h1>
+        <p class="subtitle">The magnanimous Adrian (who you totally believed forgot your birthday) has granted you the choice of 4 items</p>
 
         <div class="char-select-grid">
             <div class="option-card" onclick="revealReward(0)" role="button" aria-label="Select reward 1">
@@ -243,8 +243,8 @@
         // Keep the images in images/ folder in the repo root.
         const rewardsData = [
             {
-                title: "The Cool Mage",
-                description: "Yep i knew you'd look at this first",
+                title: "The Supreme Mage",
+                description: "Yep i knew you'd look at this first, predictable. A good choice though I'll admit.",
                 src: "images/image1.png"
             },
             {
@@ -254,12 +254,12 @@
             },
             {
                 title: "The reading twins",
-                description: "They do look cute sitting on some counter",
+                description: "They do look cute sitting on some counter, but its perhaps too harmless for someone as bloodthirsty as Lena",
                 src: "images/image3.png"
             },
             {
                 title: "The Soft Grimoire",
-                description: "Legends say it will steal your soul if you look at it's eyes for more than 10 seconds",
+                description: "Legends say it will steal your soul if you look at it's eyes for more than 10 seconds. The curse is voided by hugging it however",
                 src: "images/image4.png"
             }
         ];
@@ -311,7 +311,7 @@
         function confirmSelection() {
             if (currentSelectionIndex !== null) {
                 const chosenItem = rewardsData[currentSelectionIndex].title;
-                alert(`Quest Complete! You have chosen: ${chosenItem}.\n\nTell The Great Adrian your selection to receive your reward.`);
+                alert(`Quest Complete! You have chosen: ${chosenItem}.\n\nTell The Great Adrian your selection to receive your reward. Not that you need to tbh, he already knew, he only wanted to give you the illusion of choice`);
                 closeModal();
             }
         }
