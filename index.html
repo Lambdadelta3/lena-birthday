@@ -108,6 +108,9 @@
             margin-top: 20px;
             font-weight: bold;
             color: var(--gold);
+            padding: 0 8px;
+            text-align: center;
+            word-break: break-word;
         }
 
         /* --- MODAL (The Reveal Screen) --- */
@@ -199,21 +202,21 @@
         <p class="subtitle">Four rare items have been discovered. You may choose only one to keep.</p>
 
         <div class="char-select-grid">
-            <div class="option-card" onclick="revealReward(0)">
+            <div class="option-card" onclick="revealReward(0)" role="button" aria-label="Select reward 1">
                 <div class="chest-icon">🎁</div>
-                <div class="card-title">Option I</div>
+                <div class="card-title" data-index="0"></div>
             </div>
-            <div class="option-card" onclick="revealReward(1)">
+            <div class="option-card" onclick="revealReward(1)" role="button" aria-label="Select reward 2">
                 <div class="chest-icon">🎁</div>
-                <div class="card-title">Option II</div>
+                <div class="card-title" data-index="1"></div>
             </div>
-            <div class="option-card" onclick="revealReward(2)">
+            <div class="option-card" onclick="revealReward(2)" role="button" aria-label="Select reward 3">
                 <div class="chest-icon">🎁</div>
-                <div class="card-title">Option III</div>
+                <div class="card-title" data-index="2"></div>
             </div>
-            <div class="option-card" onclick="revealReward(3)">
+            <div class="option-card" onclick="revealReward(3)" role="button" aria-label="Select reward 4">
                 <div class="chest-icon">🎁</div>
-                <div class="card-title">Option IV</div>
+                <div class="card-title" data-index="3"></div>
             </div>
         </div>
     </div>
@@ -237,7 +240,6 @@
         /* --- JAVASCRIPT LOGIC --- */
 
         // 1. SETUP YOUR DATA HERE
-        // Replace the 'src' with your actual image filenames.
         // Keep the images in images/ folder in the repo root.
         const rewardsData = [
             {
@@ -261,6 +263,16 @@
                 src: "images/image4.png"
             }
         ];
+
+        // Populate card titles from rewardsData so each selection shows its title
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.card-title').forEach(el => {
+                const idx = Number(el.getAttribute('data-index'));
+                if (!Number.isNaN(idx) && rewardsData[idx]) {
+                    el.textContent = rewardsData[idx].title;
+                }
+            });
+        });
 
         let currentSelectionIndex = null;
         const modal = document.getElementById('rewardModal');
@@ -299,8 +311,6 @@
         function confirmSelection() {
             if (currentSelectionIndex !== null) {
                 const chosenItem = rewardsData[currentSelectionIndex].title;
-                // In a real app, this would send data to a server.
-                // For this, a simple alert confirms the "end of the quest".
                 alert(`Quest Complete! You have chosen: ${chosenItem}.\n\nTell The Great Adrian your selection to receive your reward.`);
                 closeModal();
             }
